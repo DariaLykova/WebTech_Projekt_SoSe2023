@@ -10,4 +10,9 @@ public class HelloController {
     public String greeting(@RequestParam(name="name", required=false, defaultValue="World") String name) {
         return "hello, " + name;
     }
+
+    @GetMapping("/")
+    public String root() {
+        return "hello";
+    }
 }
