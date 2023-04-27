@@ -2,6 +2,10 @@
 *.class
 .idea
 
+# H2 DB
+*.mv.db
+*.trace.db
+
 # Log file
 *.log
 

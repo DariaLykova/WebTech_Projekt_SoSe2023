@@ -2,7 +2,7 @@
 Repository for the project in the Webtechnologies module in the summer semester 2023. 
 Team: Daria Lykova and Irina Tutaeva
 
-The "Studies administration system" project is a web application for students to manage teamwork, tasks and deadlines.
+The "Studies administration system" project is a web application for students to manage teamworks, tasks and deadlines.
 The web application allows to add (change and delete) a list of subjects and organize work for each subject: create a list of groups, add tasks and deadlines.
 
 In the project:
