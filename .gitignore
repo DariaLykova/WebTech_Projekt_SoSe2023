@@ -1,6 +1,7 @@
 # Compiled class file
 *.class
 .idea
+.gradle
 
 # H2 DB
 *.mv.db
