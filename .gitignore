@@ -2,6 +2,7 @@
 *.class
 .idea
 .gradle
+build
 
 # H2 DB
 *.mv.db
