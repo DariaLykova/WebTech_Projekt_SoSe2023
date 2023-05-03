@@ -11,25 +11,25 @@ import java.util.List;
 public class TaskController {
 
     @Autowired
-    TaskService service;
+    TaskService taskService;
 
     Logger logger = LoggerFactory.getLogger(TaskController.class);
 
-    @PostMapping("/things")
-    public Task createThing(@RequestBody Task task) {
-        return service.save(task);
+    @PostMapping("/tasks")
+    public Task createTask(@RequestBody Task task) {
+        return taskService.save(task);
     }
 
-    @GetMapping("/task/{id}")
-    public Task getThing(@PathVariable String id) {
-        logger.info("GET request on route things with {}", id);
-        Long thingId = Long.parseLong(id);
-        return service.get(thingId);
+    @GetMapping("/tasks/{id}")
+    public Task getTask(@PathVariable String id) {
+        logger.info("GET request on route tasks with {}", id);
+        Long taskId = Long.parseLong(id);
+        return taskService.get(taskId);
     }
 
-    @GetMapping("/task")
-    public List<Task> getAllThings() {
-        return service.getAll();
+    @GetMapping("/tasks")
+    public List<Task> getAllTasks() {
+        return taskService.getAll();
     }
 
 }
