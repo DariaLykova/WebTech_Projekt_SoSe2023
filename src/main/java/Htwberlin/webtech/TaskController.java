@@ -15,7 +15,7 @@ public class TaskController {
 
     Logger logger = LoggerFactory.getLogger(TaskController.class);
 
-    @PostMapping("/tasks")
+    @PostMapping("/add")
     public Task createTask(@RequestBody Task task) {
         return taskService.save(task);
     }
