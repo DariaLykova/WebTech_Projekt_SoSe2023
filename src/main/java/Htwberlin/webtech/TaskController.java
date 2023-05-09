@@ -20,7 +20,7 @@ public class TaskController {
         return taskService.save(task);
     }
 
-    @GetMapping("/tasks/{id}")
+    @GetMapping("/task/{id}")
     public Task getTask(@PathVariable String id) {
         logger.info("GET request on route tasks with {}", id);
         Long taskId = Long.parseLong(id);
