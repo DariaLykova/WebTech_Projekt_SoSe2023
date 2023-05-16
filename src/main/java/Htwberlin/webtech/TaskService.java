@@ -15,6 +15,12 @@ public class TaskService {
         return repository.save(task);
     }
 
+    public Task edit(Task task) {
+       return repository.save(task);
+    }
+
+
+
     public Task get(Long id) {
         return repository.findById(id).orElseThrow(()-> new RuntimeException());
     }
@@ -26,5 +32,12 @@ public class TaskService {
         }
 
         return tasks;
+    }
+
+
+    public void delete(String id) {
+        Long taskId = Long.parseLong(id);
+        repository.deleteById(taskId);
+
     }
 }

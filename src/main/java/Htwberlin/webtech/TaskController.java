@@ -20,6 +20,17 @@ public class TaskController {
         return taskService.save(task);
     }
 
+    @PutMapping("/edit")
+    public Task editTask(@RequestBody Task task) {
+        return taskService.save(task);
+    }
+
+    @DeleteMapping("/delete/{id}")
+    public String deleteTask(@PathVariable String id){
+        taskService.delete(id);
+        return "The task with id " + id + " deleted";
+    }
+
     @GetMapping("/task/{id}")
     public Task getTask(@PathVariable String id) {
         logger.info("GET request on route tasks with {}", id);
