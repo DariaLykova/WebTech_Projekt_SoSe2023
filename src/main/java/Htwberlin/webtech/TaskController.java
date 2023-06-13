@@ -15,6 +15,7 @@ public class TaskController {
 
     Logger logger = LoggerFactory.getLogger(TaskController.class);
 
+    @CrossOrigin(origins = "http://localhost:3000")
     @PostMapping("/add")
     public Task createTask(@RequestBody Task task) {
         return taskService.save(task);
