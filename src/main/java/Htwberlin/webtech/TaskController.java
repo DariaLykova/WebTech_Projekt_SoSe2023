@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+@CrossOrigin(origins = "http://localhost:3000")
 @RestController
 public class TaskController {
 
@@ -15,7 +16,7 @@ public class TaskController {
 
     Logger logger = LoggerFactory.getLogger(TaskController.class);
 
-    @CrossOrigin(origins = "http://localhost:3000")
+
     @PostMapping("/add")
     public Task createTask(@RequestBody Task task) {
         return taskService.save(task);
