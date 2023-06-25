@@ -35,9 +35,13 @@ public class TaskService {
     }
 
 
-    public void delete(String id) {
-        Long taskId = Long.parseLong(id);
-        repository.deleteById(taskId);
+    public boolean delete(Long id) {
+        if (!repository.existsById(id)) {
+            return false;
+        }
+
+        repository.deleteById(id);
+        return true;
 
     }
 }

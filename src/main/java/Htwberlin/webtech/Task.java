@@ -18,11 +18,11 @@ public class Task {
     private String description;
 
     public Task() {}
-    public Task(String name, LocalDate deadline, String description) {
+    public Task(String name, String description, LocalDate deadline) {
 
         this.name=name;
-        this.deadline=deadline;
         this.description=description;
+        this.deadline=deadline;
     }
 
     public Long getId() {
@@ -84,8 +84,8 @@ public class Task {
         return "Task{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
-                ", deadline=" + deadline +
-                ", description='" + description + '\'' +
+                ", description='" + description +
+                ", deadline=" + deadline + '\'' +
                 '}';
     }
 }

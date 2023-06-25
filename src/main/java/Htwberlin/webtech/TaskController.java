@@ -29,7 +29,7 @@ public class TaskController {
 
     @DeleteMapping("/delete/{id}")
     public String deleteTask(@PathVariable String id){
-        taskService.delete(id);
+        taskService.delete(Long.valueOf(id));
         return "The task with id " + id + " deleted";
     }
 
