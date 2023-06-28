@@ -16,6 +16,7 @@ public class Task {
     private String name;
     private LocalDate deadline;
     private String description;
+    private String status;
 
     public Task() {}
     public Task(String name, String description, LocalDate deadline) {
@@ -23,8 +24,8 @@ public class Task {
         this.name=name;
         this.description=description;
         this.deadline=deadline;
+        setStatus();
     }
-
     public Long getId() {
         return id;
     }
@@ -57,26 +58,31 @@ public class Task {
         this.description = description;
     }
 
+    public String getStatus() {return status;  }
+
+    public void setStatus() {
+        LocalDate currentDate = LocalDate.now();
+
+            if (deadline.isBefore(currentDate)) {
+                this.status = "active";
+            } else if (deadline.isAfter(currentDate)) {
+                this.status = "expired";
+            } else{
+                this.status = "finished";
+            }
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-
         Task task = (Task) o;
-
-        if (!Objects.equals(id, task.id)) return false;
-        if (!Objects.equals(name, task.name)) return false;
-        if (!Objects.equals(deadline, task.deadline)) return false;
-        return Objects.equals(description, task.description);
+        return Objects.equals(id, task.id) && Objects.equals(name, task.name) && Objects.equals(deadline, task.deadline) && Objects.equals(description, task.description) && Objects.equals(status, task.status);
     }
 
     @Override
     public int hashCode() {
-        int result = id != null ? id.hashCode() : 0;
-        result = 31 * result + (name != null ? name.hashCode() : 0);
-        result = 31 * result + (deadline != null ? deadline.hashCode() : 0);
-        result = 31 * result + (description != null ? description.hashCode() : 0);
-        return result;
+        return Objects.hash(id, name, deadline, description, status);
     }
 
     @Override
@@ -86,6 +92,7 @@ public class Task {
                 ", name='" + name + '\'' +
                 ", description='" + description +
                 ", deadline=" + deadline + '\'' +
+                ", status=" + status + '\'' +
                 '}';
     }
 }
