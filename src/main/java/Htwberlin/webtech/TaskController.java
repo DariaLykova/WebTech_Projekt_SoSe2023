@@ -35,6 +35,7 @@ public class TaskController {
         updateTask.setName(updatedTask.getName());
         updateTask.setDescription(updatedTask.getDescription());
         updateTask.setDeadline(updatedTask.getDeadline());
+        updateTask.setCompleted(updatedTask.getCompleted());
 
         repository.save(updateTask);
 

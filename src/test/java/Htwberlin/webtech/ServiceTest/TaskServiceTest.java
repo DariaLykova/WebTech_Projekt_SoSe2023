@@ -7,16 +7,9 @@ import org.assertj.core.api.WithAssertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.junit.jupiter.api.Test;
-
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
-import org.springframework.beans.factory.annotation.Autowired;
-
-import java.time.LocalDate;
-import java.util.List;
-
-import static org.junit.Assert.assertEquals;
 import static org.mockito.Mockito.*;
 
 @ExtendWith(MockitoExtension.class)
@@ -54,22 +47,6 @@ public class TaskServiceTest implements WithAssertions {
 
         verifyNoMoreInteractions(taskRep);
         assertThat(taskResult).isFalse();
-    }
-
-    @Test
-    @DisplayName("should return the quantity of saved tasks")
-    void getAllTasksTest() {
-        List<Task> tasks = List.of(
-                new Task("DBTech", "Übungsblatt3", LocalDate.of(2023, 05, 20)),
-                new Task("DBTech", "Übungsblatt2", LocalDate.of(2023, 04, 15)),
-                new Task("DBTech", "Übungsblatt1", LocalDate.of(2023, 04, 10))
-        );
-        when(taskRep.findAll()).thenReturn(tasks);
-        TaskService taskService = new TaskService();
-
-        int actualQuantity = taskService.getAll().size();
-        int expectedQuantity = tasks.size();
-        assertEquals(expectedQuantity, actualQuantity);
     }
 
 

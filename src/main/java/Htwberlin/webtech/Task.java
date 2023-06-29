@@ -17,6 +17,8 @@ public class Task {
     private LocalDate deadline;
     private String description;
     private String status;
+    private Boolean completed = false;
+
 
     public Task() {}
     public Task(String name, String description, LocalDate deadline) {
@@ -58,18 +60,26 @@ public class Task {
         this.description = description;
     }
 
+    public Boolean getCompleted() {
+        return completed;
+    }
+
+    public void setCompleted(Boolean completed) {
+        this.completed = completed;
+    }
+
     public String getStatus() {return status;  }
 
     public void setStatus() {
         LocalDate currentDate = LocalDate.now();
 
-            if (deadline.isBefore(currentDate)) {
-                this.status = "active";
-            } else if (deadline.isAfter(currentDate)) {
-                this.status = "expired";
-            } else{
-                this.status = "finished";
-            }
+        if (deadline.isBefore(currentDate)) {
+            this.completed = false;
+        } else if (deadline.isAfter(currentDate)) {
+            this.completed = false;
+        } else {
+            this.completed = true;
+        }
     }
 
     @Override
