@@ -1,0 +1,44 @@
+package Htwberlin.webtech.ControllerTest;
+
+import Htwberlin.webtech.Task;
+import Htwberlin.webtech.TaskController;
+import Htwberlin.webtech.TaskService;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
+import org.springframework.boot.test.mock.mockito.MockBean;
+import org.springframework.test.web.servlet.MockMvc;
+
+import java.time.LocalDate;
+import java.util.List;
+
+import static org.mockito.Mockito.doReturn;
+import static org.springframework.test.web.client.match.MockRestRequestMatchers.jsonPath;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+
+@WebMvcTest(TaskController.class)
+public class TaskRestControllerTest {
+
+
+
+        @Autowired
+        private MockMvc mockMvc;
+
+        @MockBean
+        private TaskService taskService;
+
+    Task task1 = new Task(1L,"Web Project", "Web application based on Spring Boot", LocalDate.of(2023, 7, 12) , "Active" );
+    Task task2 = new Task(2L,"Project management", "Creation of a website for a client", LocalDate.of(2023, 7, 20), "Completed");
+    //@Test
+    //@DisplayName("should return 404 if person is not found")
+    //void should_return_404_if_person_is_not_found() throws Exception {
+        // given
+       // doReturn(null).when(taskService).findById(anyLong());
+
+        // when
+       // mockMvc.perform(get("/api/v1/persons/123"))
+                // then
+               // .andExpect(status().isNotFound());
+    }
+//}

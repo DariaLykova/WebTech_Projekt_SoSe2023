@@ -28,6 +28,17 @@ public class Task {
         this.deadline=deadline;
         setStatus();
     }
+
+    public Task(Long id,String name, String description, LocalDate deadline, String status) {
+
+        this.id= id;
+        this.name = name;
+        this.description = description;
+        this.deadline = deadline;
+        this.status = status;
+        setStatus();
+    }
+
     public Long getId() {
         return id;
     }
@@ -68,7 +79,7 @@ public class Task {
         this.completed = completed;
     }
 
-    public String getStatus() {return status;  }
+    public String getStatus() {return status; }
 
     public void setStatus() {
         LocalDate currentDate = LocalDate.now();
