@@ -5,10 +5,11 @@ import Htwberlin.webtech.Task.TaskRepository;
 import Htwberlin.webtech.Task.TaskService;
 import org.assertj.core.api.WithAssertions;
 import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.extension.ExtendWith;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
+import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
 
 import java.time.LocalDate;
@@ -102,6 +103,25 @@ public class TaskServiceTest implements WithAssertions {
         assertThat(taskResult).isFalse();
     }
 
+    @Test
+    public void testSave() {
+        // Create a task object to save
+        Task task = new Task();
+        task.setId(1L);
+        task.setName("Task 1");
+
+        // Mock the save() method of the repository
+        Mockito.when(taskRep.save(task)).thenReturn(task);
+
+        // Call the save() function in the service
+        Task savedTask = taskService.save(task);
+
+        // Assert that the returned task is the same as the one saved
+        assertEquals(task, savedTask);
+
+        // Verify that the save() method of the repository was called
+        Mockito.verify(taskRep, Mockito.times(1)).save(task);
+    }
 
 }
 
