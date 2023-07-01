@@ -1,8 +1,8 @@
 package Htwberlin.webtech.ServiceTest;
 
-import Htwberlin.webtech.Task;
-import Htwberlin.webtech.TaskRepository;
-import Htwberlin.webtech.TaskService;
+import Htwberlin.webtech.Task.Task;
+import Htwberlin.webtech.Task.TaskRepository;
+import Htwberlin.webtech.Task.TaskService;
 import org.assertj.core.api.WithAssertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -12,7 +12,6 @@ import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
 import java.time.LocalDate;
-import java.time.Month;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;

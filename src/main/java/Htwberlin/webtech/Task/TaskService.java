@@ -1,4 +1,4 @@
-package Htwberlin.webtech;
+package Htwberlin.webtech.Task;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import org.springframework.stereotype.Service;

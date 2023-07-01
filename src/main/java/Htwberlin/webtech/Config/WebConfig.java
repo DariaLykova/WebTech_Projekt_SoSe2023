@@ -1,4 +1,4 @@
-package Htwberlin.webtech;
+package Htwberlin.webtech.Config;
 
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.CorsRegistry;

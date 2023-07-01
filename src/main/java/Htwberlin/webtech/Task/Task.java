@@ -1,4 +1,4 @@
-package Htwberlin.webtech;
+package Htwberlin.webtech.Task;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
