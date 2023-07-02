@@ -18,7 +18,6 @@ public class TaskService {
 
     public Task get(Long id) {
         return repository.findById(id).orElseThrow(()-> new RuntimeException());
-        //return repository.findById(id).get();
     }
 
     public List<Task> getAll() {
