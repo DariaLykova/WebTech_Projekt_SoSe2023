@@ -37,7 +37,7 @@ public class TaskServiceTest implements WithAssertions {
 
 
     @Test
-    @DisplayName("should return true if save was successful")
+    @DisplayName("should save task")
     public void testSave() {
 
         // Mock the save() method of the repository
@@ -51,7 +51,7 @@ public class TaskServiceTest implements WithAssertions {
     }
 
     @Test
-    @DisplayName("should return true if task with this id was found")
+    @DisplayName("should find task with certain id")
     public void testGet() {
 
         Mockito.when(taskRep.findById(task1.getId())).thenReturn(Optional.of(task1));
@@ -77,7 +77,7 @@ public class TaskServiceTest implements WithAssertions {
     }
 
     @Test
-    @DisplayName("should return true if tasks were found in repository")
+    @DisplayName("should find all tasks in repository")
     public void testGetAll() {
 
         List<Task> tasks = new ArrayList<>();
@@ -133,6 +133,7 @@ public class TaskServiceTest implements WithAssertions {
     }
 
     @Test
+    @DisplayName("should update task if it exists")
     public void testUpdate_ExistingTask() {
 
         Mockito.when(taskRep.existsById(task1.getId())).thenReturn(true);
@@ -146,6 +147,7 @@ public class TaskServiceTest implements WithAssertions {
     }
 
     @Test
+    @DisplayName("should IllegalArgumentException if task to update does not exist")
     public void testUpdate_NonExistingTask() {
 
         Task nonExistingTask = new Task();
