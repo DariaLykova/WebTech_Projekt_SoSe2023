@@ -5,12 +5,16 @@ import org.hibernate.service.spi.ServiceException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.List;
 @CrossOrigin(origins = "http://localhost:3000")
 @RestController
+@Validated
 public class TaskController {
 
     @Autowired
@@ -19,7 +23,12 @@ public class TaskController {
     @Autowired
     private TaskRepository repository;
 
+    public TaskController(TaskService taskService) {
+        this.taskService = taskService;
+    }
+
     Logger logger = LoggerFactory.getLogger(TaskController.class);
+
 
 
     @PostMapping("/add")
@@ -59,4 +68,26 @@ public class TaskController {
         return taskService.getAll();
     }
 
+    @PostMapping(path = "/tasks")
+    public ResponseEntity<List<Task>> createTasks(@RequestBody List<Task> tasks) {
+        List<Task> createdTasks = new ArrayList<>();
+        for (Task task : tasks) {
+            Task createdTask = taskService.save(task);
+            createdTasks.add(createdTask);
+        }
+        return ResponseEntity.status(HttpStatus.CREATED).body(createdTasks);
+    }
+
 }
+// @GetMapping(path = "/tasks")
+//public ResponseEntity<List<Task>> fetchTasks() {
+//  return ResponseEntity.ok(taskService.getAll());
+//}
+
+//@GetMapping(path = "/task/{id}")
+//public ResponseEntity<Task> fetchTaskById(@PathVariable Long id) {
+//  var task = taskService.get(id);
+//return task != null? ResponseEntity.ok(task) : ResponseEntity.notFound().build();
+//}
+
+
