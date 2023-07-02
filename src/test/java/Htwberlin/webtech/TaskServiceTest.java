@@ -1,4 +1,4 @@
-package Htwberlin.webtech.ServiceTest;
+package Htwberlin.webtech;
 
 import Htwberlin.webtech.Task.Task;
 import Htwberlin.webtech.Task.TaskRepository;
@@ -14,10 +14,11 @@ import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.*;
 
 @ExtendWith(MockitoExtension.class)
@@ -50,7 +51,7 @@ public class TaskServiceTest implements WithAssertions {
     }
 
     @Test
-    @DisplayName("should return true if task with this id  was found")
+    @DisplayName("should return true if task with this id was found")
     public void testGet() {
 
         Mockito.when(taskRep.findById(task1.getId())).thenReturn(Optional.of(task1));
@@ -75,39 +76,32 @@ public class TaskServiceTest implements WithAssertions {
         Mockito.verify(taskRep, Mockito.times(1)).findById(3L);
     }
 
-
     @Test
-    public void get_ValidId_ReturnsTask() {
-        Long id = task1.getId();
+    @DisplayName("should return true if tasks were found in repository")
+    public void testGetAll() {
 
-        Task retrievedTask = taskService.get(id);
+        List<Task> tasks = new ArrayList<>();
+        tasks.add(task1);
+        tasks.add(task2);
 
+        Mockito.when(taskRep.findAll()).thenReturn(tasks);
+        List<Task> savedTask = taskService.getAll();
 
-        assertNotNull(retrievedTask);
+        Assertions.assertEquals(tasks, savedTask);
+
+        Mockito.verify(taskRep, Mockito.times(1)).findAll();
     }
 
     @Test
-    public void getAll_TasksExist_ReturnsListOfTasks() {
+    @DisplayName("should return empty list if there are no tasks in the repository")
+    public void testGetAll_EmptyList() {
 
-        List<Task> allTasks = taskService.getAll();
+        Mockito.when(taskRep.findAll()).thenReturn(new ArrayList<>());
+        List<Task> savedTask = taskService.getAll();
 
-        assertNotNull(allTasks);
-        assertTrue(allTasks.size() > 0);
-    }
+        Assertions.assertTrue(savedTask.isEmpty());
 
-    @Test
-    @DisplayName("should return true if delete was successful")
-    public void getAll_NoTasksExist_ReturnsEmptyList() {
-
-        Long id1 = task1.getId();
-        Long id2 = task2.getId();
-        taskService.delete(id1);
-        taskService.delete(id2);
-
-        List<Task> allTasks = taskService.getAll();
-
-        assertNotNull(allTasks);
-        assertEquals(0, allTasks.size());
+        Mockito.verify(taskRep, Mockito.times(1)).findAll();
     }
 
 
@@ -136,6 +130,35 @@ public class TaskServiceTest implements WithAssertions {
 
         verifyNoMoreInteractions(taskRep);
         assertThat(taskResult).isFalse();
+    }
+
+    @Test
+    public void testUpdate_ExistingTask() {
+
+        Mockito.when(taskRep.existsById(task1.getId())).thenReturn(true);
+        Mockito.when(taskRep.save(task1)).thenReturn(task1);
+        Task updatedTask = taskService.update(task1);
+
+        Assertions.assertEquals(task1, updatedTask);
+
+        Mockito.verify(taskRep, Mockito.times(1)).existsById(1L);
+        Mockito.verify(taskRep, Mockito.times(1)).save(task1);
+    }
+
+    @Test
+    public void testUpdate_NonExistingTask() {
+
+        Task nonExistingTask = new Task();
+        nonExistingTask.setId(2L);
+
+        Mockito.when(taskRep.existsById(2L)).thenReturn(false);
+
+        Assertions.assertThrows(IllegalArgumentException.class, () -> {
+            taskService.update(nonExistingTask);
+        });
+
+        Mockito.verify(taskRep, Mockito.times(1)).existsById(2L);
+        Mockito.verify(taskRep, Mockito.never()).save(nonExistingTask);
     }
 
 }

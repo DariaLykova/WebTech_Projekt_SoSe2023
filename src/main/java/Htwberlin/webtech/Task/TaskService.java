@@ -37,5 +37,13 @@ public class TaskService {
         return true;
     }
 
+    public Task update(Task updatedTask) {
+        Long id = updatedTask.getId();
+        if (!repository.existsById(id)) {
+            throw new IllegalArgumentException("Task with ID " + id + " does not exist.");
+        }
+        return repository.save(updatedTask);
+    }
+
 
 }

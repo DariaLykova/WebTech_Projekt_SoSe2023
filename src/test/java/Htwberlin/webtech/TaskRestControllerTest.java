@@ -1,4 +1,4 @@
-package Htwberlin.webtech.ControllerTest;
+package Htwberlin.webtech;
 
 import Htwberlin.webtech.Task.Task;
 import Htwberlin.webtech.Task.TaskController;
@@ -9,10 +9,6 @@ import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.test.web.servlet.MockMvc;
 
 import java.time.LocalDate;
-
-import static org.mockito.Mockito.doReturn;
-import static org.springframework.test.web.client.match.MockRestRequestMatchers.jsonPath;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 
 @WebMvcTest(TaskController.class)
 public class TaskRestControllerTest {
