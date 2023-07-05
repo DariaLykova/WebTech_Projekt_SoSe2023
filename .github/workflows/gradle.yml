@@ -12,7 +12,7 @@ jobs:
     runs-on: ubuntu-latest
     
     steps:
-    - uses: action/checout@v2
+    - uses: action/checkout@v2
     - name: Set up JDK 16
       uses: action/setup-java@v2
       with:
