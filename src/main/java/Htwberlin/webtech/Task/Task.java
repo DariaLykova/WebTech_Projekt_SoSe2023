@@ -39,6 +39,16 @@ public class Task {
         setStatus();
     }
 
+    public Task(Long id,String name, String description, LocalDate deadline, String status, Boolean completed) {
+
+        this.id = id;
+        this.name = name;
+        this.description = description;
+        this.deadline = deadline;
+        this.status = status;
+        this.completed = completed;
+    }
+
     public Long getId() {
         return id;
     }
