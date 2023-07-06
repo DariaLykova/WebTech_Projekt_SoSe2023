@@ -44,15 +44,15 @@ public class TaskServiceTest implements WithAssertions {
         Mockito.when(taskRep.save(task1)).thenReturn(task1);
         Task savedTask = taskService.save(task1);
 
-        assertEquals(task1, savedTask);
+        Assertions.assertEquals(task1, savedTask);
 
         // Verify that the save() method of the repository was called
         Mockito.verify(taskRep, Mockito.times(1)).save(task1);
     }
 
     @Test
-    @DisplayName("should find task with certain id")
-    public void testGet() {
+    @DisplayName("should find a task with certain id")
+    public void testGet1() {
 
         Mockito.when(taskRep.findById(task1.getId())).thenReturn(Optional.of(task1));
         Task savedTask = taskService.get(task1.getId());
@@ -63,6 +63,21 @@ public class TaskServiceTest implements WithAssertions {
     }
 
     @Test
+    @DisplayName("should find a task by its id")
+    public void testGet2() {
+
+        doReturn(Optional.of(task1)).when(taskRep).findById(1L);
+        doReturn(Optional.of(task2)).when(taskRep).findById(2L);
+
+        Task actual1 = taskService.get(1L);
+        Task actual2 = taskService.get(2L);
+
+        assertEquals(actual1.getName(), "Web Project");
+        assertEquals(actual2.getName(), "Project management");
+
+    }
+
+        @Test
     @DisplayName("should return RuntimeException if task with this id does not exist")
     public void testGet_InvalidId() {
 
