@@ -162,7 +162,7 @@ public class TaskServiceTest implements WithAssertions {
     }
 
     @Test
-    @DisplayName("should IllegalArgumentException if task to update does not exist")
+    @DisplayName("should return IllegalArgumentException if task to update does not exist")
     public void testUpdate_NonExistingTask() {
 
         Task nonExistingTask = new Task();
