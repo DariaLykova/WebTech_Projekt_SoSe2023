@@ -39,7 +39,6 @@ public class TaskTest {
     @DisplayName("should check if the hash codes of the tasks are equal")
     public void testHashCode_EqualTasks() {
 
-        // Assert that the hash codes of the tasks are equal
         Assertions.assertEquals(task1.hashCode(), task2.hashCode());
     }
 

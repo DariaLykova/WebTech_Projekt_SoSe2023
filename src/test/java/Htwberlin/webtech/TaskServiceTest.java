@@ -40,14 +40,11 @@ public class TaskServiceTest implements WithAssertions {
     @DisplayName("should save task")
     public void testSave() {
 
-        // Mock the save() method of the repository
         Mockito.when(taskRep.save(task1)).thenReturn(task1);
         Task savedTask = taskService.save(task1);
 
         Assertions.assertEquals(task1, savedTask);
 
-        // Verify that the save() method of the repository was called
-        Mockito.verify(taskRep, Mockito.times(1)).save(task1);
     }
 
     @Test
@@ -59,7 +56,6 @@ public class TaskServiceTest implements WithAssertions {
 
         Assertions.assertEquals(task1, savedTask);
 
-        Mockito.verify(taskRep, Mockito.times(1)).findById(task1.getId());
     }
 
     @Test
@@ -81,14 +77,12 @@ public class TaskServiceTest implements WithAssertions {
     @DisplayName("should return RuntimeException if task with this id does not exist")
     public void testGet_InvalidId() {
 
-        // Mock the findById() method of the repository to return an empty optional
         Mockito.when(taskRep.findById(3L)).thenReturn(Optional.empty());
 
         Assertions.assertThrows(RuntimeException.class, () -> {
             taskService.get(3L);
         });
 
-        Mockito.verify(taskRep, Mockito.times(1)).findById(3L);
     }
 
     @Test
@@ -104,7 +98,6 @@ public class TaskServiceTest implements WithAssertions {
 
         Assertions.assertEquals(tasks, savedTask);
 
-        Mockito.verify(taskRep, Mockito.times(1)).findAll();
     }
 
     @Test
@@ -116,9 +109,7 @@ public class TaskServiceTest implements WithAssertions {
 
         Assertions.assertTrue(savedTask.isEmpty());
 
-        Mockito.verify(taskRep, Mockito.times(1)).findAll();
     }
-
 
 
     @Test

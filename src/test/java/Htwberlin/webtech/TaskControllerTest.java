@@ -87,6 +87,18 @@ public class TaskControllerTest {
                 .andExpect(content().string(expected));
     }
 
+    @Test
+    @DisplayName("should return 200 if task is found")
+    void taskIsFound() throws Exception {
+        // given
+        doReturn(task1).when(taskService).get(task1.getId());
+
+        // when
+        mockMvc.perform(get("/task/1"))
+                // then
+                .andExpect(status().isOk());
+    }
+
 
 
 

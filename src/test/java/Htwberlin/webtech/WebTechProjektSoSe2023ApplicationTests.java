@@ -1,6 +1,7 @@
 package Htwberlin.webtech;
 
 import Htwberlin.webtech.Task.TaskService;
+import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
@@ -13,13 +14,9 @@ class WebTechProjektSoSe2023ApplicationTests {
 
 
 
-	//@Test
-	//void contextLoads() {
-	//}
-
-
-	//@Test
-	//@DisplayName("")
+	@Test
+	void contextLoads() {
+	}
 
 
 
