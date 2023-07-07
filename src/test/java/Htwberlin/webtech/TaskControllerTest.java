@@ -18,10 +18,10 @@ import java.util.List;
 import static org.hamcrest.Matchers.containsString;
 import static org.mockito.Mockito.doReturn;
 import static org.mockito.Mockito.when;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.delete;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
-//import static sun.nio.cs.Surrogate.is;
 
 @WebMvcTest(TaskController.class)
 public class TaskControllerTest {
@@ -74,6 +74,20 @@ public class TaskControllerTest {
                 .andExpect(content().contentType(MediaType.APPLICATION_JSON))
                 .andExpect(content().string(containsString(expected)));
     }
+
+    @Test
+    @DisplayName("should delete an existing task")
+    void testDeleteTask() throws Exception {
+        when(taskService.delete(1L)).thenReturn(true);
+
+        String expected = "The task with id 1 deleted";
+
+        this.mockMvc.perform(delete("/delete/1"))
+                .andExpect(status().isOk())
+                .andExpect(content().string(expected));
+    }
+
+
 
 
  }

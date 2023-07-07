@@ -79,15 +79,6 @@ public class TaskController {
     }
 
 }
-// @GetMapping(path = "/tasks")
-//public ResponseEntity<List<Task>> fetchTasks() {
-//  return ResponseEntity.ok(taskService.getAll());
-//}
 
-//@GetMapping(path = "/task/{id}")
-//public ResponseEntity<Task> fetchTaskById(@PathVariable Long id) {
-//  var task = taskService.get(id);
-//return task != null? ResponseEntity.ok(task) : ResponseEntity.notFound().build();
-//}
 
 
